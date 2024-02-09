@@ -31,7 +31,7 @@ for k in range(1, 101):
             if not visited[j][i] and graph[j][i] > k:
                 if dfs(i, j, k):
                     cnt += 1
-    if max_safe < cnt:
+    if max_safe <= cnt:
         K = k
         max_safe = cnt
 
