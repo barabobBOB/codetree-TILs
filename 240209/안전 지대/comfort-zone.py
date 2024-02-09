@@ -23,7 +23,7 @@ def dfs(x, y, k):
 K = 0
 max_safe = 0
 
-for k in range(101):
+for k in range(1, 101):
     cnt = 0
     visited = [[False for _ in range(M)] for _ in range(N)]
     for i in range(M):
