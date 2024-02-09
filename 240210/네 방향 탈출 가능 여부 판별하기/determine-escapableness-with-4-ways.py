@@ -1,10 +1,7 @@
 from collections import deque
 
 N, M = map(int, input().split())
-graph = []
-
-for i in range(N):
-    graph.append(list(map(int, input().split())))
+graph = [list(map(int, input().split())) for _ in range(N)]
 
 visited = [[False for _ in range(M)] for _ in range(N)]
 
@@ -18,7 +15,7 @@ def bfs(x, y):
 
     while queue:
         x, y = queue.popleft()
-    
+
         if x == M-1 and y == N-1:
             return 1
 
@@ -26,17 +23,16 @@ def bfs(x, y):
             nx = x + dx[i]
             ny = y + dy[i]
 
-            if nx < 0 or ny < 0 or nx >= N or ny >= M:
+            if nx < 0 or ny < 0 or nx >= M or ny >= N:
                 continue
 
-            if graph[ny][nx] == 0:
+            if graph[ny][nx] == 0 or visited[ny][nx]:
                 continue
-            
-            if not visited[ny][nx]:
-                graph[ny][nx] = graph[y][x] + 1
-                visited[ny][nx] = True
-                queue.append((nx, ny))
+
+            graph[ny][nx] = graph[y][x] + 1
+            visited[ny][nx] = True
+            queue.append((nx, ny))
         
     return 0
-        
+
 print(bfs(0, 0))
