@@ -18,7 +18,10 @@ def bfs(x, y):
 
     while queue:
         x, y = queue.popleft()
-        
+    
+        if x == M-1 and y == N-1:
+            return 1
+
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
@@ -29,11 +32,11 @@ def bfs(x, y):
             if graph[ny][nx] == 0:
                 continue
             
-            if visited[ny][nx] == 1:
+            if not visited[ny][nx]:
                 graph[ny][nx] = graph[y][x] + 1
                 visited[ny][nx] = True
                 queue.append((nx, ny))
         
-    return graph[-1][-1]
+    return 0
         
 print(bfs(0, 0))
