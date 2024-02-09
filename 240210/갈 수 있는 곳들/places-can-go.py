@@ -43,7 +43,7 @@ def bfs(x, y):
             graph[ny][nx] = 1
             q.append((nx, ny))
             count += 1
-
+    print(count)
     return count
 
 for i in start:
