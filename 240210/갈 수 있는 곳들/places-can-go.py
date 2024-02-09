@@ -11,7 +11,7 @@ for _ in range(N):
 for _ in range(K):
     start.append(list(map(int, input().split())))
 
-visited = [[False for _ in range(N)] for _ in range(N)]
+# visited = [[False for _ in range(N)] for _ in range(N)]
 
 def bfs(x, y):
     dx = [-1, 1, 0, 0]
@@ -22,10 +22,10 @@ def bfs(x, y):
 
     count = 0
 
-    if not visited[y][x]:
+    if not graph[y][x]:
         count += 1
 
-    visited[y][x] = True
+    graph[y][x] = 1
 
     while q:
         x, y = q.popleft()
@@ -37,10 +37,10 @@ def bfs(x, y):
             if nx < 0 or ny < 0 or nx >= N or ny >= N:
                 continue
             
-            if graph[ny][nx] == 1 or visited[ny][nx]:
+            if graph[ny][nx] == 1:
                 continue
             
-            visited[ny][nx] = True
+            graph[ny][nx] = 1
             q.append((nx, ny))
             count += 1
 
