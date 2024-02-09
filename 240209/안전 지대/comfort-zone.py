@@ -1,4 +1,8 @@
 # dfs 사용
+import sys
+
+# 재귀 깊이 한도 증가
+sys.setrecursionlimit(10000)
 
 N, M = map(int, input().split())
 
