@@ -26,6 +26,7 @@ def dfs(x, y, k):
 
     return True
 
+result_k = 1
 max_safe = 0
 
 for k in range(1, K + 1):
@@ -37,7 +38,7 @@ for k in range(1, K + 1):
                 if dfs(i, j, k):
                     cnt += 1
     if max_safe < cnt:
-        K = k
+        result_k = k
         max_safe = cnt
 
-print(K, max_safe)
+print(result_k, max_safe)
