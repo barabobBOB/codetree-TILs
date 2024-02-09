@@ -4,8 +4,14 @@ N, M = map(int, input().split())
 
 graph = []
 
+K = 1
+
 for i in range(N):
-    graph.append(list(map(int, input().split())))
+    nums = list(map(int, input().split()))
+    graph.append(nums)
+
+    if K < max(nums):
+        K = max(nums)
 
 def dfs(x, y, k):
     if x > M - 1 or x < 0 or y > N - 1 or y < 0 or graph[y][x] <= k or visited[y][x]:
@@ -20,10 +26,9 @@ def dfs(x, y, k):
 
     return True
 
-K = 1
 max_safe = 0
 
-for k in range(1, 101):
+for k in range(1, K + 1):
     cnt = 0
     visited = [[False for _ in range(M)] for _ in range(N)]
     for i in range(M):
