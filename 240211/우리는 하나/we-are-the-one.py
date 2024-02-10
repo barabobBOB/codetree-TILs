@@ -1,48 +1,41 @@
 from collections import deque
+from itertools import combinations
 
 N, K, U, D = map(int, input().split())
 
 graph = []
-
 for _ in range(N):
     graph.append(list(map(int, input().split())))
 
-max_city = 0
+def bfs(start):
+    visited = [[False] * N for _ in range(N)]
+    count = 1  # 시작 도시 포함
 
-def bfs(x, y):
-    count = 0
-    visited = [[False for _ in range(N)] for _ in range(N)]
+    q = deque([start])
+    visited[start[0]][start[1]] = True
 
-    q = deque()
-    q.append((x, y))
-
-    dx = [1, -1, 0, 0]
-    dy = [0, 0, -1, 1]
-
-    visited[x][y] = True
+    dx = [1, 0, -1, 0]
+    dy = [0, 1, 0, -1]
 
     while q:
         x, y = q.popleft()
-        h = graph[x][y]
-
         for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-
-            if nx < 0 or ny < 0 or nx >= N or ny >= N or visited[nx][ny]:
-                continue
-            
-            h = abs(h - graph[nx][ny])
-
-            if U <= h <= D:
-                visited[nx][ny] = True
-                q.append((x, y))
-                count += 1
-
+            nx, ny = x + dx[i], y + dy[i]
+            if 0 <= nx < N and 0 <= ny < N and not visited[nx][ny]:
+                h_diff = abs(graph[x][y] - graph[nx][ny])
+                if U <= h_diff <= D:
+                    visited[nx][ny] = True
+                    q.append((nx, ny))
+                    count += 1
     return count
 
-for i in range(N):
-    for j in range(N):
-        max_city = max(bfs(i, j), max_city)
+max_count = 0
+all_positions = [(i, j) for i in range(N) for j in range(N)]
 
-print(max_city)
+for combo in combinations(all_positions, K):
+    total = 0
+    for pos in combo:
+        total += bfs(pos)
+    max_count = max(max_count, total)
+
+print(max_count)
