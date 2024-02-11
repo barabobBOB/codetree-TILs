@@ -7,7 +7,7 @@ graph = []
 for _ in range(N):
     graph.append(list(map(int, input().split())))
 
-visited = [[False] * N for _ in range(M)]
+visited = [[False] * M for _ in range(N)]
 
 def bfs(x, y):
     if graph[-1][-1] == 0:
