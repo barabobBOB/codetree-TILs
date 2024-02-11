@@ -34,6 +34,9 @@ def bfs(x, y):
                     graph[nx][ny] = graph[x][y] + 1
                     q.append((nx, ny))
 
+    if graph[-1][-1] == 1:
+            return -1
+
     return graph[-1][-1] - 1
 
 result = bfs(0, 0)
