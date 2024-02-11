@@ -10,9 +10,6 @@ for _ in range(N):
 visited = [[False] * M for _ in range(N)]
 
 def bfs(x, y):
-    if graph[-1][-1] == 0:
-        return -1
-
     q = deque()
     q.append((x, y))
 
@@ -28,14 +25,14 @@ def bfs(x, y):
             nx = x + dx[i]
             ny = y + dy[i]
 
-            if 0 <= nx < N and 0 <= ny <= M:
+            if 0 <= nx < N and 0 <= ny < M:
                 if not visited[ny][nx] and graph[ny][nx] == 1:
                     visited[ny][nx] = True
                     graph[ny][nx] = graph[y][x] + 1
                     q.append((nx, ny))
 
     if graph[-1][-1] == 1:
-            return -1
+        return -1
 
     return graph[-1][-1] - 1
 
