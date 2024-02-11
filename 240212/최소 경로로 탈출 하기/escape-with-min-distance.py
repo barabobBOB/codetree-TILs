@@ -29,7 +29,7 @@ def bfs(x, y):
                     graph[ny][nx] = graph[y][x] + 1
                     q.append((nx, ny))
 
-    return graph[-1][-1] if graph[-1][-1] != 1 else -1 
+    return graph[-1][-1] - 1 if graph[-1][-1] != 1 else -1 
 
 result = bfs(0, 0)
 print(result)
