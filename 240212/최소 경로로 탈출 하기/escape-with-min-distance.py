@@ -25,7 +25,7 @@ def bfs(x, y):
             nx = x + dx[i]
             ny = y + dy[i]
 
-            if 0 <= nx < N and 0 <= ny < M:
+            if 0 <= nx < M and 0 <= ny < N:
                 if not visited[ny][nx] and graph[ny][nx] == 1:
                     visited[ny][nx] = True
                     graph[ny][nx] = graph[y][x] + 1
