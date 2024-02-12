@@ -1,14 +1,12 @@
 n = int(input())
 
-dp = [0] * (n+1)
-
-dp[1] = 1
-dp[2] = 1
+dp = [0] * (n + 1)
 
 def pb(x):
-    if x < 3:
-        return dp[x]
-    dp[x] = pb(x - 1) + pb(x - 2)
+    if x <= 2:
+        dp[x] = 1
+    else:
+        dp[x] = pb(x - 1) + pb(x - 2)
     return dp[x]
 
 print(pb(n))
