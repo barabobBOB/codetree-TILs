@@ -11,7 +11,7 @@ dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
 max_count = 0
-count = 0
+count = 1
 
 def dfs(x, y, k):
     visited[y][x] = True
@@ -25,7 +25,7 @@ def dfs(x, y, k):
             count += 1
             dfs(nx, ny, k)
 
-    return count + 1
+    return count
 
 c = 0
 
@@ -34,8 +34,8 @@ for i in range(N):
         if not visited[i][j]:
             cnt = dfs(i, j, graph[i][j])
             count = 0
+            max_count = max(max_count, cnt)
             if cnt >= 4:
-                max_count = max(max_count, cnt)
                 c += 1
 
 print(c, max_count)
